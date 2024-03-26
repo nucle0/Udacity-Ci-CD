@@ -3,6 +3,16 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 jobs:
+  print_hello:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      -echo "hello"
+  print_world:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - echo "world"
   test:
     docker:
       - image: cimg/base:stable
@@ -34,6 +44,10 @@ jobs:
 workflows:
   example:
     jobs:
+      - print_hello
+      - print_world:
+          requires:
+            - print_hello
       - test
       - build:
           requires:
