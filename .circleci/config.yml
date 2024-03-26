@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Run echo command
           command: echo 'world'
-      -run
+      - run:
           name: Print developers name
           command: echo ${DEV_NAME}
 workflows:
