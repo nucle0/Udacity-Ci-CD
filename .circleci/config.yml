@@ -18,7 +18,8 @@ jobs:
           command: pwd
       - persist_to_workspace:
           root: /tmp/workspace
-          path: *
+          paths: 
+            - output.txt
   print_document:
     docker:
       - image: circleci/node:13.8.0
