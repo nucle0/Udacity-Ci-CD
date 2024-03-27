@@ -28,6 +28,14 @@ jobs:
           root: ~/
           paths: 
             - output.txt
+      - run: return 1
+      - run:
+          name: list files
+          command: ls
+      - run:
+          command: echo "AHA it failed"
+          when: on_fail
+    
   print_document:
     docker:
       - image: circleci/node:13.8.0
