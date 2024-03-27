@@ -19,20 +19,19 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           path: *
-  print_world:
+  print_document:
     docker:
       - image: circleci/node:13.8.0
     steps:
+      - attach_workspace:
+          at: /tmp/workspace  
       - run:
-          name: Run echo command
-          command: echo 'world'
-      - run:
-          name: Print developers name
-          command: echo ${DEV_NAME}
+          name: Print file
+          command: cat output.txt
 workflows:
   example:
     jobs:
       - build_output_file
-      - print_world:
+      - print_document:
           requires:
             - build_output_file
