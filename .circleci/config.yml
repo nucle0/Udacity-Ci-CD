@@ -2,11 +2,19 @@
 # This is a generic template to serve as a base for your custom config
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
+
+commands:
+  print_pipeline_id:
+    description: "A very simple command for demonstration purposes"
+    steps:
+      - run: echo $CIRCLE_WORKFLOW_ID
+
 jobs:
   build_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
+      - print_pipeline_id
       - run:
           name: Persisst to workspace 
           command: echo "text to output here" > ~/output.txt
