@@ -3,13 +3,15 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 jobs:
-  print_hello:
+  build_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - run:
-          name: Run echo command
-          command: echo 'hello'
+          name: Persisst to workspace 
+          command: echo "text to output here" > output.txt
+      - persist_to_workspace:
+          root: /
   print_world:
     docker:
       - image: circleci/node:13.8.0
@@ -23,7 +25,7 @@ jobs:
 workflows:
   example:
     jobs:
-      - print_hello
+      - build_output_file
       - print_world:
           requires:
-            - print_hello
+            - build_output_file
