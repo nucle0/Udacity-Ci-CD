@@ -31,7 +31,7 @@ jobs:
           command: pwd
       - run:
           name: Print file
-          command: cat output.txt
+          command: cat ~/output.txt
 workflows:
   example:
     jobs:
