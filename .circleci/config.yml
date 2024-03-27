@@ -9,7 +9,7 @@ jobs:
     steps:
       - run:
           name: Persisst to workspace 
-          command: echo "text to output here" > output.txt
+          command: echo "text to output here" > /tmp/workspace/output.txt
       - run:
           name: list files
           command: ls
@@ -17,8 +17,8 @@ jobs:
           name: Current dir
           command: pwd
       - persist_to_workspace:
-          root: /
-          path: output.txt
+          root: /tmp/workspace
+          path: *
   print_world:
     docker:
       - image: circleci/node:13.8.0
